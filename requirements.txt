@@ -1,0 +1,14 @@
+certifi==2019.3.9
+Click==7.0
+Flask==1.0.2
+Flask-MongoAlchemy==0.7.2
+itsdangerous==1.1.0
+Jinja2==2.10.1
+MarkupSafe==1.1.1
+MongoAlchemy==0.19
+pipenv==2018.11.26
+pkg-resources==0.0.0
+pymongo==2.8.1
+virtualenv==16.5.0
+virtualenv-clone==0.5.3
+Werkzeug==0.15.2
