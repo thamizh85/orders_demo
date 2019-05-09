@@ -1,6 +1,20 @@
 FROM python:3.5-alpine
-ADD . /code
-WORKDIR /code
-RUN pip install -r requirements.txt
-CMD ["python", "app.py"]
 
+ADD . /code
+
+WORKDIR /code
+
+RUN pip install -r requirements.txt
+
+# RUN apk add --no-cache bash git nginx uwsgi uwsgi-python py2-pip \
+# 	&& pip install --upgrade pip \
+# 	&& pip install -r requirements.txt \
+# 	&& rm -rf /var/cache/apk/*
+
+EXPOSE 8080
+
+# ENTRYPOINT ["python"]
+
+# CMD ["app.py"]
+
+CMD ["python", "app.py"]

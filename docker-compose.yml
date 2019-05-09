@@ -1,9 +1,17 @@
 version: '3'
 services:
-  web:
+  api:
     build: .
     ports:
      - "8080:5000"
+    volumes:
+     - .:/code
+    depends_on:
+     - mongo
+    environment:
+     - API_KEY=AIzaSyBZwzc4ODHQmcveK89geuoeNmOax7eEpeY
+     - MONGO_HOST=mongo
+     - MONGO_PORT=27017
   mongo:
     image: "mongo:latest"
     ports:
