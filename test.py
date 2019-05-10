@@ -37,6 +37,16 @@ class PlaceOrdersTestCase(unittest.TestCase):
         order_response_json = json.loads(res.data.decode('utf-8'))
         self.assertTrue('distance' in order_response_json)
 
+    def test_place_order_impossible_route(self):
+        order_body = {
+            "origin" : ["4", "3"],
+            "destination" : ["2", "1"]
+        }
+        res = self.client().post('/orders', 
+                                  json=order_body)
+        order_response_json = json.loads(res.data.decode('utf-8'))
+        self.assertEqual(res.status_code, 500)
+
     def test_place_order_response_has_status(self):
         order_body = {
             "origin" : ["22.348624", "114.064814"],
@@ -172,6 +182,7 @@ def orders_test_suite():
     suite.addTest(PlaceOrdersTestCase('test_place_order_response_has_status'))
     suite.addTest(PlaceOrdersTestCase('test_place_order_response_distance_value'))
     suite.addTest(PlaceOrdersTestCase('test_place_order_response_status_value'))
+    suite.addTest(PlaceOrdersTestCase('test_place_order_impossible_route'))
     suite.addTest(TakeOrdersTestCase('test_take_order_response'))
     suite.addTest(TakeOrdersTestCase('test_take_order_response_has_status'))
     suite.addTest(TakeOrdersTestCase('test_take_order_response_status_value'))
